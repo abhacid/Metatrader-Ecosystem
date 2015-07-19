@@ -51,17 +51,13 @@
     <None Include="Initials Files\TIME1_modified.mq4" />
     <None Include="Initials Files\TIME1_modified.url" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="BreakOutBox.c" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>copy "$(ProjectDir)BreakOutBox.c" "$(ProjectDir)BreakOutBox.mq4"
-xcopy "$(ProjectDir)BreakOutBox.mq4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Indicators" /Y</PreBuildEvent>
+    <PreBuildEvent>xcopy "$(ProjectDir)BreakOutBox.mq4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Indicators" /Y</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)$(OutDir)$(TargetFileName)" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Libraries\nquotes\asssembly" /Y
-call "C:\Program Files (x86)\MetaTrader - AAAFx\metaeditor.exe" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Indicators\BreakOutBox.mq4"</PostBuildEvent>
+</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,4 +1,4 @@
-﻿#property indicator_chart_window               // Configuration for daily candle bodies
+#property indicator_chart_window               // Configuration for daily candle bodies
 
 #import "nquotes/nquoteslib.ex4"
     int nquotes_setup(string className, string assemblyName);
@@ -47,9 +47,9 @@
 
 int init()                          
 {
-   Print("nquotes_init...");
-
    nquotes_setup("Metatrader.Indicators.BreakOutBox", "Metatrader.Indicators");
+   
+	Print("nquotes_init...");
 
     nquotes_set_property_string("UniqueID", UniqueID);
     nquotes_set_property_int("NumberOfDays", NumberOfDays);
