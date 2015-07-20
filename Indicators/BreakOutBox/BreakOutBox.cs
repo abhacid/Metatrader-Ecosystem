@@ -51,6 +51,7 @@ namespace Metatrader.Indicators
     ///            //|+++++ added Alerts - can be used with Tesla's Alerter EA          |
     ///            //+------------------------------------------------------------------+
     /// </summary>
+    /// 
     public class BreakOutBox : MqlApi
     {
         [ExternVariable]
@@ -121,47 +122,6 @@ namespace Metatrader.Indicators
             return 0;
         }
 
-        /// <summary>
-        /// Custom indicator deinitialization function  
-        /// </summary>
-        public override int deinit()
-        {
-            DeleteObjects();
-
-            return 0;
-        }
-
-        /// <summary>
-        /// Remove all indicator Rectangles
-        /// </summary>
-        void DeleteObjects()
-        {
-            DateTime dtTradeDate = TimeCurrent();
-            string sRectABname;
-
-            if (OpenClose)
-                sRectABname = " BoxOC  ";
-            else
-                sRectABname = " BoxHL  ";
-
-            for (int i = 0; i < NumberOfDays; i++)
-            {
-
-                ObjectDelete(UniqueID + sRectABname + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxOpen  " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxClose  " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxBO_High  " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxBO_HIGH ALERT " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxBO_Low  " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxBO_LOW ALERT  " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxPeriodA  " + TimeToStr(dtTradeDate, TIME_DATE));
-                ObjectDelete(UniqueID + " BoxPeriodB  " + TimeToStr(dtTradeDate, TIME_DATE));
-
-                dtTradeDate = decrementTradeDate(dtTradeDate);
-                while (TimeDayOfWeek(dtTradeDate) > 5 || TimeDayOfWeek(dtTradeDate) < 1) dtTradeDate = decrementTradeDate(dtTradeDate);     // Removed Sundays from plots
-            }
-        }
-
         //+------------------------------------------------------------------+
         //| Custom indicator iteration function                              |
         //+------------------------------------------------------------------+
@@ -198,6 +158,46 @@ namespace Metatrader.Indicators
             }
 
             return 0;
+        }
+
+        /// <summary>
+        /// Custom indicator deinitialization function  
+        /// </summary>
+        public override int deinit()
+        {
+            DeleteObjects();
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Remove all indicator Rectangles
+        /// </summary>
+        void DeleteObjects()
+        {
+            DateTime dtTradeDate = TimeCurrent();
+            string sRectABname;
+
+            if (OpenClose)
+                sRectABname = " BoxOC  ";
+            else
+                sRectABname = " BoxHL  ";
+
+            for (int i = 0; i < NumberOfDays; i++)
+            {
+                ObjectDelete(UniqueID + sRectABname + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxOpen  " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxClose  " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxBO_High  " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxBO_HIGH ALERT " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxBO_Low  " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxBO_LOW ALERT  " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxPeriodA  " + TimeToStr(dtTradeDate, TIME_DATE));
+                ObjectDelete(UniqueID + " BoxPeriodB  " + TimeToStr(dtTradeDate, TIME_DATE));
+
+                dtTradeDate = decrementTradeDate(dtTradeDate);
+                while (TimeDayOfWeek(dtTradeDate) > 5 || TimeDayOfWeek(dtTradeDate) < 1) dtTradeDate = decrementTradeDate(dtTradeDate);     // Removed Sundays from plots
+            }
         }
 
         /// <summary>
@@ -422,9 +422,6 @@ namespace Metatrader.Indicators
 
             return (StrToTime(iTimeYear + "." + iTimeMonth + "." + iTimeDay + " " + iTimeHour + ":" + iTimeMinute));
         }
-
-
-
 
     }
 }

@@ -31,10 +31,12 @@ namespace Metatrader.Indicators
 {
     public class Candlesticks : MqlApi
     {
-        public double[] extMapBuffer0 = new double [10000];
-        public double[] extMapBuffer1 = new double [10000];
+        private const int nCandles = 400;
 
-        private string[] patternText = new string[10000];
+        public double[] extMapBuffer0 = new double [nCandles];
+        public double[] extMapBuffer1 = new double [nCandles];
+
+        private string[] patternText = new string[nCandles];
         int limit;
 
         /// <summary>
@@ -86,7 +88,7 @@ namespace Metatrader.Indicators
                 if (isBearishEngulfingPattern(index))
                 {
                     extMapBuffer0[index + 1] = High[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + (Point * 12));
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + 12 * Point);
                     ObjectSetText(patternText[index + 1], "Bearish Engulfing", 9, "Times New Roman", Color.Red);
 
                 }
@@ -94,7 +96,7 @@ namespace Metatrader.Indicators
                 if (isDarkCloudCoverPattern(index))
                 {
                     extMapBuffer0[index + 1] = High[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + (Point * 12));
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + 12 * Point);
                     ObjectSetText(patternText[index + 1], "Dark Cloud Cover", 9, "Times New Roman", Color.Red);
 
                 }
@@ -102,14 +104,14 @@ namespace Metatrader.Indicators
                 if (isHangingManPatternDown(index))
                 {
                     extMapBuffer0[index + 1] = High[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + (Point * 12));
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + 12 * Point);
                     ObjectSetText(patternText[index + 1], "Hanging Man", 9, "Times New Roman", Color.Red);
                 }
 
                 if (isHangingManPatternUp(index))
                 {
                     extMapBuffer0[index + 1] = High[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + (Point * 12));
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + 12 * Point);
                     ObjectSetText(patternText[index + 1], "Hanging Man", 9, "Times New Roman", Color.Red);
 
                 }
@@ -117,14 +119,14 @@ namespace Metatrader.Indicators
                 if (isInvertedHammerUp(index))
                 {
                     extMapBuffer0[index + 1] = High[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + (Point * 12));
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + 12 * Point);
                     ObjectSetText(patternText[index + 1], "Inverted Hammer Up", 9, "Times New Roman", Color.Red);
                 }
 
                 if (isShootingStarUp(index))
                 {
                     extMapBuffer0[index + 1] = High[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + (Point * 12));
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], High[index + 1] + 12 * Point);
                     ObjectSetText(patternText[index + 1], "Shooting Star Up", 9, "Times New Roman", Color.Red);
                 }
 
@@ -133,14 +135,14 @@ namespace Metatrader.Indicators
                 if (isBullishEngulfing(index))
                 {
                     extMapBuffer1[index + 1] = Low[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - Point);
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - 12 * Point);
                     ObjectSetText(patternText[index + 1], "Bullish Engulfing", 9, "Times New Roman", Color.Blue);
                 }
 
                 if (isPricing(index))
                 {
                     extMapBuffer1[index + 1] = Low[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - Point);
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - 12 * Point);
                     ObjectSetText(patternText[index + 1], "Pricing Pattern", 9, "Times New Roman", Color.Blue);
 
                 }
@@ -149,7 +151,7 @@ namespace Metatrader.Indicators
                 if (isHamerPatternDown(index))
                 {
                     extMapBuffer1[index + 1] = Low[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - Point);
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - 12 * Point);
                     ObjectSetText(patternText[index + 1], "Hammer", 9, "Times New Roman", Color.Blue);
 
                 }
@@ -157,7 +159,7 @@ namespace Metatrader.Indicators
                 if (isHamerPatternUp(index))
                 {
                     extMapBuffer1[index + 1] = Low[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - Point);
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - 12 * Point);
                     ObjectSetText(patternText[index + 1], "Hammer", 9, "Times New Roman", Color.Blue);
                 }
 
@@ -165,7 +167,7 @@ namespace Metatrader.Indicators
                 if (isShootingStarDown(index))
                 {
                     extMapBuffer1[index + 1] = Low[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - Point);
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - 12 * Point);
                     ObjectSetText(patternText[index + 1], "Shooting Star Down", 9, "Times New Roman", Color.Blue);
 
                 }
@@ -173,7 +175,7 @@ namespace Metatrader.Indicators
                 if (isInvertedHammerDown(index))
                 {
                     extMapBuffer1[index + 1] = Low[index + 1];
-                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - Point);
+                    ObjectCreate(patternText[index + 1], OBJ_TEXT, 0, Time[index + 1], Low[index + 1] - 12 * Point);
                     ObjectSetText(patternText[index + 1], "Inverted Hammer Down", 9, "Times New Roman", Color.Blue);
                 }
             }

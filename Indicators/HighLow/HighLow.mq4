@@ -18,9 +18,10 @@
 double Buf0[];
 double Buf1[];             
 
+// Init Function
 int init()                          
 {
-    nquotes_setup("Metatrader.Indicators.HighLow", "Metatrader.Indicators");
+    nquotes_setup("Metatrader.Indicators.HighLow", "Metatrader.Indicators.HighLow");
 
     SetIndexBuffer(0, Buf0);         
     SetIndexBuffer(1, Buf1);         
@@ -31,8 +32,6 @@ int init()
 
 int start()                         
 {
-    Print("nquotes_start...");
-
     int result = nquotes_start();
 
     if (result < 0)

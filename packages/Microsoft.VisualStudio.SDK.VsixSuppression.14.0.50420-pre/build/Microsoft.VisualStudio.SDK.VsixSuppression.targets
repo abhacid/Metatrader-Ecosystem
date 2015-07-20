@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Target Name="RemoveVSSDKAssemblies"
+          AfterTargets="GetVsixSourceItems"
+          Condition="'$(IncludeCopyLocalReferencesInVSIXContainer)'=='true'">
+    <ItemGroup>
+      <SuppressPackaging Include="@(VSIXSourceItem)"
+                         Condition="
+                              '%(FileName)' == 'Microsoft.VisualStudio.ProjectSystem.v14only' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ProjectSystem.VS.V14Only' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ProjectSystem.Utilities.v14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ProjectSystem.Interop' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Threading' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Composition' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Composition.Configuration' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.Interop.10.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.Interop.11.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.Interop.12.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.Interop.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.Interop' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.InteropA' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Designer.Interfaces' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ManagedInterfaces.9.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ManagedInterfaces' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ManagedInterfaces.WCF' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.OLE.Interop' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ProjectAggregator' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.10.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.8.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.9.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop.10.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop.8.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop.9.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.WCFReference.Interop' or
+                              '%(FileName)' == 'Microsoft.Data.ConnectionUI' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.CoreUtility' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Data.Core' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Data' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Data.Framework' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Data.Services' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Debugger.Engine' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Editor' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.ImageCatalog' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Imaging' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Imaging.Interop.14.0.DesignTime' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Language.Intellisense' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Language.StandardClassification' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Package.LanguageService.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.QualityTools.Vsip' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Settings.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Design' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Immutable.10.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Immutable.11.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Immutable.12.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Immutable.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.11.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.12.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.12.1.DesignTime' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Shell.Interop.14.0.DesignTime' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Text.Data' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Text.Logic' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Text.UI' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Text.UI.Wpf' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop.11.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop.12.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextManager.Interop.12.1.DesignTime' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextTemplating.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextTemplating.Interfaces.10.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextTemplating.Interfaces.11.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextTemplating.Interfaces.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.TextTemplating.VSHost.14.0' or
+                              '%(FileName)' == 'Microsoft.VisualStudio.Utilities' or
+                              '%(FileName)' == 'Microsoft.VSSDK.UnitTestLibrary' or
+                              '%(FileName)' == 'Microsoft.Windows.Simulator.Client'
+
+                             "/>
+      <VSIXSourceItem Remove="@(SuppressPackaging)" />
+    </ItemGroup>
+
+    <Message Text='Suppressed "%(SuppressPackaging.FileName)%(SuppressPackaging.Extension)" from being included in VSIX.'
+             Condition=" '@(SuppressPackaging)' != '' "/>
+  </Target>
+</Project>

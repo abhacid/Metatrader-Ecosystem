@@ -1,4 +1,4 @@
-﻿
+
 #property indicator_chart_window    // Indicator is drawn in the main window
 #property indicator_buffers 2       // Number of buffers
 #property indicator_color1 Blue     // Color of the 1st line
@@ -19,7 +19,7 @@ double Buf1[];
 
 int init()                          
 {
-    nquotes_setup("Metatrader.Indicators.Candlesticks", "Metatrader.Indicators");
+    nquotes_setup("Metatrader.Indicators.Candlesticks", "Metatrader.Indicators.Candlesticks");
 
     SetIndexBuffer(0, Buf0);         
     SetIndexBuffer(1, Buf1);         
@@ -31,7 +31,6 @@ int init()
 
 int start()                         
 {
-    Print("nquotes_start...");
     int result = nquotes_start();
     if (result < 0)
     {

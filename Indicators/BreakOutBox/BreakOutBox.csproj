@@ -44,8 +44,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="BreakOutBox.cs" />
+    <Compile Include="BreakOutBox.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="BreakOutBox.ex4" />
     <None Include="BreakOutBox.mq4" />
     <None Include="Initials Files\BreakOut_BOX_5_DailyCandles_OCbox_indicator.mq4" />
     <None Include="Initials Files\TIME1_modified.mq4" />
@@ -53,7 +54,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy "$(ProjectDir)BreakOutBox.mq4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Indicators" /Y</PreBuildEvent>
+    <PreBuildEvent>"%25Metatrader_PATH%25\mql.exe" "$(ProjectDir)$(MSBuildProjectName).mq4"
+xcopy "$(ProjectDir)$(MSBuildProjectName).mq4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Indicators\Ecosystem" /Y
+xcopy "$(ProjectDir)$(MSBuildProjectName).ex4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Indicators\\Ecosystem"  /Y</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent>xcopy "$(ProjectDir)$(OutDir)$(TargetFileName)" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Libraries\nquotes\asssembly" /Y

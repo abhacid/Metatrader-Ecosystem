@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+  <appSettings>
+    <add key="ExpertsDirPath" value="Libraries\nquotes\asssembly"/>
+    <add key="LogsDirPath" value="%TERMINAL_DATA_PATH%\%Metatrader_Instance_Id%\MQL4\Logs\NQuotes"/>
+    <add key="AllowBuildWithoutRestart" value="false" />
+  </appSettings>
+</configuration>
+

@@ -11,6 +11,8 @@
 	int nquotes_set_property_double(string name, double value);
 	int nquotes_set_property_color(string name, color value);
 	int nquotes_set_property_string(string name, string value);
+	
+   string nquotes_get_property_string(string name);
 #import
 
 
@@ -47,7 +49,7 @@
 
 int init()                          
 {
-   nquotes_setup("Metatrader.Indicators.BreakOutBox", "Metatrader.Indicators");
+   nquotes_setup("Metatrader.Indicators.BreakOutBox", "Metatrader.Indicators.BreakOutBox");
    
 	Print("nquotes_init...");
 
@@ -80,19 +82,18 @@ int init()
     nquotes_set_property_bool("rectA_close_begin", rectA_close_begin); 
     nquotes_set_property_bool("periodB_ALERTS", periodB_ALERTS); 
 
-    nquotes_set_property_string("Name", Name);
+    Name = nquotes_get_property_string("Name");
 
     return (nquotes_init());
 }
 
 int start()                         
 {
-    Print(Name+" start...");
 	int result = nquotes_start();
 
     if (result < 0)
     {
-        Print(Name+" start has failed");
+        Print(Name + " start has failed");
         return (result);
     }
     

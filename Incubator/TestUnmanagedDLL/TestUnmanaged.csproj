@@ -90,8 +90,8 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(ProjectDir)$(OutDir)$(TargetFileName)" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Scripts" /Y
-xcopy "$(ProjectDir)TestUnmanagedDLL.mq4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Scripts" /Y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(ProjectDir)$(OutDir)$(TargetFileName)" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Scripts\Ecosystem" /Y
+xcopy "$(ProjectDir)TestUnmanagedDLL.mq4" "%25TERMINAL_DATA_PATH%25\%25Metatrader_Instance_Id%25\MQL4\Scripts\Ecosystem" /Y</PostBuildEvent>
   </PropertyGroup>
   <Import Project="../../packages/UnmanagedExports.1.2.6/tools/RGiesecke.DllExport.targets" Condition="Exists('../../packages/UnmanagedExports.1.2.6/tools/RGiesecke.DllExport.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
